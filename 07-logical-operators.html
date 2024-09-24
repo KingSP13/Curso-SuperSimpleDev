@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Operators</title>
+</head>
+
+<script>
+
+// Javascript True and False
+// It’s worth knowing first what is considered true and false in Javascript.
+
+// All these will evaluate to true (ie if you put them in an if statement):
+
+// true
+// All numbers besides 0
+// All non-empty strings (includes “false” and “0”)
+// An array (including empty: [])
+// An object (including empty: {})
+// And these are the false values:
+
+// false
+// 0
+// “ ”
+// null
+// NaN
+// undefined
+
+    // OPERADOR TERNÁRIO:
+
+    // É um sibstituto para um if statement de uma alternativa, ou seja, duas opções, o valor da esquerda é representado caso a operação indicada como argumento seja verdadeira, caso contrário, seja falsa, o lado direito do operador é executado, uma diferença no operador ternário é que ele pode ser armazenado numa variável.
+
+    const result = false ? 'truthy' : 'falsy';
+
+    console.log(result)
+
+    /*
+    Este é um atalho para o código :
+    let result;
+
+    if(condition) {
+        result = 'truthy';
+    } else {
+        result = 'falsy'
+    }
+    */
+
+    let conta = 4 + 5;
+
+    const promocao = conta < 10 ? 'Elegível para promoção' : 'Não elegível para promoção'
+    
+    console.log(promocao)
+    
+    // OPERADOR DE GUARDA OU OPERADOR 'AND':
+
+    // É um operador que como o nome sugere, protege, no caso do operador de guarda ele não permite que o código a direita seja executado caso o resultado em sua chamada seja false. Também pode ser armazenado em uma variável.
+
+    const a1 = true && true; // t && t returns true
+    const a2 = true && false; // t && f returns false
+    const a3 = false && true; // f && t returns false
+    const a4 = false && 3 === 4; // f && f returns false
+    const a5 = "Cat" && "Dog"; // t && t returns Dog
+    const a6 = false && "Cat"; // f && t returns false
+    const a7 = "Cat" && false; // t && f returns false
+
+
+    true && console.log('hello')
+    
+    const message = 5 && 'hello'
+
+    var getUsername = function() { return loggedIn && username;}
+    // If the user hasn’t logged in yet, loggedIn will be false, and irregardless of what username might have been set to, our function will return false. If loggedIn is true, then it will proceed to the next variable, and return username .
+
+    console.log(message)
+
+    // OPERADOR PADRÃO OU OPERADOR 'OR' :
+
+    // Como o nome sugere, é um operador que analisa duas dadas expressões, uma de cada lado do simbolo de 'double piping ||', e verifica se acaso ao menos uma é dada como verdadeira, assim satisfazendo sua condição e disparando seu comando. Nesta ordem, da esquerda para a direita, sendo não necessário de checar o código da direita caso o da esquerda seja verdadeiro. Em suma, vai executar o bloco de código que for verdadeiro, caso o primeiro seja verdadeiro, é executado sem checar o segundo bloco, caso seja um valor falsy, o segundo bloco é checado e executado caso o valor não seja falsy
+
+    const o1 = true || true; // t || t returns true
+    const o2 = false || true; // f || t returns true
+    const o3 = true || false; // t || f returns true
+    const o4 = false || 3 === 4; // f || f returns false
+    const o5 = "Cat" || "Dog"; // t || t returns Cat
+    const o6 = false || "Cat"; // f || t returns Cat
+    const o7 = "Cat" || false; // t || f returns Cat
+
+    let currency = 'EUR' || 'USD'
+    
+    console.log(currency) // exibindo 'EUR' por conta do valor da esquerda ser tido como true
+
+    currency = null || 'USD'
+    
+    console.log(currency) // exibindo 'USD', por conta do valor da esquerda ser tido como false
+    /*
+    Se tratando de um atalho para o if statement com essa estrutura:
+    let currency;
+
+    if(!condition) {
+        currency =  'USD';
+    }
+    */
+
+    /*
+    É importante citar a diferença entre os valores 'null' e 'undefined'.
+
+    NULL: é utilizado quando queremos itencionalmente que o valor de algo seja nulo, como por exemplo em funções que recebem argumentos:
+    
+    function func(parameter = 'default') {
+    console.log(parameter);
+    }
+    func();                 => 'default'
+    func(undefined);        => 'default'
+
+    func(null);             => null
+    */
+
+</script>
+
+<body>
+    <h1>Logical Operators</h1>
+
+</body>
+</html>

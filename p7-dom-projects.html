@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Shipping Calculator</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .subscribe-button {
+            border: none;
+            border-radius: 20px;
+            padding: 10px 15px 10px;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 20px;
+        }
+        .subbed {
+            background-color: rgb(248, 248, 248);
+            color: black;
+        }
+        .cost-input {
+            font-size: 15px;
+            padding: 10px;
+        }
+        .calculate-button {
+            background-color: green;
+            color: white;
+            border: none;
+            font-size: 15px;
+            padding: 12px 50px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Youtube Subscribe Button</h1>
+    
+    <button class="js-subscribe-button subscribe-button" onclick="subscribe()">Subscribe</button>
+
+    <h1>Amazon Shipping Calculator</h1>
+    <p>Orders under 40$ = 10$ shipping.</p>
+    <p>Orders over 40$ = FREE shipping</p>
+
+    <input placeholder="Cost of order" class="js-cost-input cost-input" onkeydown="
+    handleCostKeydown(event)
+    ">
+    <button class="calculate-button" onclick="calculateShip()
+    ">Calculate</button>
+
+    <p class="js-info-paragraph"></p>
+
+<script>
+    let jsInfoParagraph = document.querySelector('.js-info-paragraph');
+
+    function subscribe() {
+        const subButton = document.querySelector('.js-subscribe-button');
+        if (subButton.innerText === 'Subscribe') {
+            subButton.innerText = 'Subscribed';
+            subButton.classList.add('subbed')
+        } else {
+            subButton.innerText = 'Subscribe'
+            subButton.classList.remove('subbed')
+        }   }
+
+    function handleCostKeydown(event) {
+        if(event.key === 'Enter') {
+            calculateShip();    }   }
+    function calculateShip() {
+        const inputElement = document.querySelector('.js-cost-input');
+        let cost = Number(inputElement.value);
+        
+        if(cost != '') {
+
+            if(cost < 40) {
+                cost += 10
+                cost = cost.toFixed(2)
+                jsInfoParagraph.innerHTML = `Your order is a total of $${cost}`;
+            } else {
+                jsInfoParagraph.innerHTML = `Your order is a total of $${cost}, with FREE shipping !`
+            }   } else {
+                jsInfoParagraph.innerHTML = `Your cart is empty, select some products.`
+            }   
+        }
+
+</script>
+</body>
+</html>

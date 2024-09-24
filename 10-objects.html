@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+<body>
+    <script>
+        /*
+
+
+
+
+        // const product = {
+        //     name: 'socks',
+        //     price: 1090
+        // };
+        // console.log(product);
+        // console.log(product.name);
+        // console.log(product.price);
+        
+        // product.name = 'cotton socks'
+        // console.log(product.name);
+
+        // product.newProperty = true;
+        // console.log(product);
+        // delete product.newProperty;
+        // console.log(product);
+
+        const product2 = {
+            name: 'shirt',
+            ['delivery-time']: '1 day',
+            rating: {
+                stars: 4.5,
+                count: 87
+            },
+            fun: function function1() {
+                console.log('fuction inside the object');
+            }
+        };
+        console.log(product2);
+        console.log(product2.name);
+        console.log(product2['name']);
+        console.log(product2.rating.stars);
+        console.log(product2.rating.count);
+
+        // Podemos utilizar qualquer uma das duas formas acima para acessar um valor de uma propriedade de um objeto, temos como exemplo "dot notation" onde os espaços de separação são substituídos por um ponto '.', e temos "square bracket" '[]', o que na prática muda muito pouco mas square bracket notation nos permite acessar propriedades que normalmente não funcionariam com dot notation. Por exemplo:
+
+        // console.log(product2.delivery-time)
+        
+        //No caso o traço é reconhecido como um sinal de menos e uma operação matemática é feita, neste caso precisamos da bracket notation para que a consulta funcione. IMPORTANTE : A bracket notation permite o uso de variáveis, operações matemáticas e outros valores que não sejam uma string. Por padrão é utilzado dot notation por comodidade, é mais facil de ler e deixa o código mais limpo, porém caso haja necessidade do uso de uma propriedade que não possa ser acessada, não há problemas
+        
+        console.log(product2['delivery-time']);
+
+        //Também podemos inserir funções dentro de objetos, que por sua vez são chamaod se "métodos". Acessamos essas funções com a mesma notação de pontos, e podemos fazer a chamada exatamente da mesma forma.
+
+        product2.fun();
+
+        console.log(typeof console);
+    
+        //Vinhamos trabalhando com métodos e funções este tempo todo, como por exemplo a função "alert()", uma função é identificável através dos parênteses ao final de seu título, outra função é a função mostrada acima, console.log, o .log indica uma função dentro do objeto 'console', podemos confirmar usando typeof como argumento.
+
+        console.log(typeof console.log);
+
+        //Outro método que exploramos foi o método Math.random(), como é visível pela sua anatomia, Math é um objeto e random() é uma função interna a este objeto, tornando-se assim, um método;
+
+        console.log(Math.random());
+
+        console.log(JSON.stringify(product2));
+        const jsonString = JSON.stringify(product2);
+        
+        console.log(JSON.parse(jsonString));
+
+        */
+
+
+
+        console.log('Hello'.length);
+        console.log('Hello'.toUpperCase());
+        console.log('Hello'.toLowerCase());
+
+        const object1 = {
+            message: 'hello'
+        };
+        const object2 = object1;
+
+        object1.message = 'Good Job !'
+        console.log(object1);
+
+        console.log(object2);
+
+        // Importante observar que mudamos a atribuição do objeto1 porém foi alterado no objeto2 também, isso por que em javascrypt, um objeto é armazenado na memória do computador, então um objeto em javascrypt é essencialmente uma referencia para o objeto original. No caso o objeto1 está na memória, o  objeto2 está apontando para o mesmo lugar, como um atalho na tela incial do seu desktop, então o objeto em si é mutável, mas não a referencia, mesmo armazenado em uma const.
+
+        const object3 = {
+            message: 'Good Job !'
+        };
+
+        console.log(object3 === object1);
+        
+        // No código acima, exemplificamos que é impossivel comparar objetos diretamente, como já mencionado, objetos são referencias a caminhos na memória, então essencialmente cada um está num lugar diferente, o que não permite que o resultado seja true já que o que javascrypt compara é seu caminho de memória e não as informações armazenadas dentro de cada lado da operação.
+
+        console.log(object2 === object1);
+
+        // O que não ocorre na comparação acima, já que object2 tem a mesma referencia de memória que object1, eles são tidos como iguais.
+
+        const object4 = {
+            message: 'Good Job !',
+            price: 799
+        };
+        // const message = object4.message;
+        const {message, price} = object4
+        // const {price} = object4   -> Não é necessário uma nova linha, pode ser adicionado a que já existe como mostrado acima.
+        // O código acima é um atalho para quando voce tem uma propriedade num objeto com o mesmo nome da variável que irá carregar esta informação, no casso a propriedade 'message' do objeto object4 irá ser armazenada na variavel message de mesmo nome. Isso é chamado de destructuring
+        console.log(message);
+        console.log(price);
+
+        const object5 = {
+            //message: message,
+            message,
+            // method: function function1() {
+            //     console.log('method')
+            //}
+            method() {
+                console.log('method')
+            }
+        };
+        console.log(object5)
+        object5.method();
+        </script>
+</body>
+</html>

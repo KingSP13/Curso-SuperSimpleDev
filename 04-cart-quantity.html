@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart quantity project</title>
+    <script>
+        let cartQuantity = '';
+        let plus1 = cartQuantity + 1;
+        let plus2 = cartQuantity + 2;
+        let plus3 = cartQuantity + 3;
+        let resetCart = cartQuantity = 0;
+        let less1 = cartQuantity - 1;
+        let less2 = cartQuantity - 2;
+        let less3 = cartQuantity - 3;
+        let cartLimit = 10;
+        let cartZero = 0;
+    </script>
+</head>
+<body>
+    <h1>Cart Quantity</h1>
+
+    <button onclick="
+    console.log(cartQuantity)
+    ">Show Quantity</button>
+
+    <button onclick="
+    cartQuantity + 1 <= cartLimit
+    ? cartQuantity ++ : alert(`Cart is full, can't add more items.`);
+    console.log(cartQuantity);
+    ">Add to Cart</button>
+
+    <button onclick="
+    cartQuantity +2 <= cartLimit
+    ? cartQuantity +=2 : alert(`Cart is full, can't add more items.`);
+    console.log(cartQuantity);
+    ">+2</button>
+
+
+    <button onclick="
+    cartQuantity + 3 <= cartLimit
+    ? cartQuantity += 3 : alert(`Cart is full, can't add more items.`);
+    console.log(cartQuantity);
+    ">+3</button>
+
+
+    <button onclick="
+    cartQuantity - 1 >= cartZero
+    ? cartQuantity -- : alert(`Cart is empty, can't remove more items.`);
+    console.log(cartQuantity);
+    ">-1</button>
+
+    <button onclick="
+    cartQuantity -2 > cartZero
+    ? cartQuantity -= 2 : alert(`Cart is empty, can't remove more items.`);
+    console.log(cartQuantity);
+    ">-2</button>
+
+
+    <button onclick="
+    cartQuantity -3 > cartZero
+    ? cartQuantity -= 3 : alert(`Cart is empty, can't remove more items.`);
+    console.log(cartQuantity);
+    ">-3</button>
+
+
+    <button onclick="
+    cartQuantity = 0;
+    alert('Cart successfully emptied')
+    ">Reset Cart</button>
+
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays and Loops</title>
+</head>
+<body>
+    <script>
+
+        /*
+        //Arrays são uma lista de valores basicamente, podendo armazenar qualquer valor disponível em JavaScrypt, sendo ele number, string, object, boolean, etc.
+
+        const myArray = [10, 20, 30];
+
+        console.log(myArray);
+        console.log(myArray[0]);
+        myArray[0] = 99;
+        console.log(myArray[0]);
+
+        //Podemos criar um array em múltiplas linhas sem problemas, já que o que identifica seu inicio e seu final são as square brackets '[]'
+
+        [1,
+        'hello',
+        true,
+        {name: 'socks'},
+        [1, 2]
+        ]
+
+        console.log(typeof [1, 2]);
+        console.log(Array.isArray([1, 2]))
+
+        console.log(myArray.length)
+
+        //Podemos adicionar valores no array, usando o método '.push', podemos incluir um valor sendo o último da lista
+
+        myArray.push(100)
+        console.log(myArray)
+
+        //Podemos remover valores do array, uma forma de faze-lo é com o método '.splice', que leva dois valores, o valor inserido primeiro é o index de início do corte e o segundo sendo o valor do index final, porém o último valor não é incluso
+
+        myArray.splice(0, 2)
+        console.log(myArray)
+        */
+
+        let i = 1;
+        while (i <= 5) {
+            console.log(i);
+            i++;
+        }
+
+        for (let i = 1; i <= 5; i++) {
+            console.log(i)
+        }
+
+        let randomNum = 0;
+
+        while(randomNum < 0.50) {
+            randomNum = Math.random().toFixed(2);
+            console.log(randomNum)
+        }
+
+        //Looping through an array, podemos usar o exemplo abaixo para acessar cada um dos valores armazenados em um dado array. Criando a variavel index como condição do loop e recebendo o valor '0', inicia a contagem a partir do primeiro valor armazenado, a condição é que o index deve ser 1 número menor que o número de valores total do array, incrementando por um a cada loop podemos verificar se chegou ao final, caso não, o loop é acionado novamente passando pelo segundo array e verificando novamente, incrementnado index em 1 novamente, e assim sucessivamente
+
+    /*
+    const myTodos = [
+    'make dinner',
+    'wash dishes',
+    'watch youtube',
+    ];
+    for(let index = 0; index <= myTodos.length -1; index++) {
+        const value = myTodos[index]
+        console.log(value);
+    }
+    function addTodoKeydown(event) {
+        if(event.key === 'Enter') {
+            addTodo();
+        } }
+
+        // SHORTCUTS
+
+        for(let i = 0; index < myTodos.length; i++) {
+        const value = myTodos[i]
+        console.log(value);
+    }
+    */
+
+
+    //Somando os valores numéricos de um array, accumulator pattern
+
+   const nums = [1, 1, 3];
+   let total = 0;
+
+   for(let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+    // total = total + num;
+    total += num;
+   }
+   console.log(total)
+
+   const numsDoubled = [];
+   for(let i = 0; i< nums.length; i++) {
+    const num = nums[i];
+    numsDoubled.push(num * 2);
+
+    console.log(numsDoubled)
+   }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin flip game</title>
+</head>
+<body>
+
+    <script>
+        let coin = '';
+        let playerMove = '';
+        let result = '';
+        const score = JSON.parse(localStorage.getItem('storedScore')) || {
+            wins: '0',
+            loses: '0'
+            };
+        function playerChoice(value) {
+            playerMove = value;
+            console.log(`Voce selecionou ${playerMove}`)
+        }
+
+        function updateScore() {
+            if( playerMove === coin) {
+                (score.wins++, console.log(`Voce venceu ! O placar é de : \nVitórias:${score.wins}\nDerrotas: ${score.loses}`),
+                localStorage.setItem('storedScore', JSON.stringify(score))
+            )
+            } else {
+                (score.loses++, console.log(`Voce perdeu. O placar é de : \nVitórias:${score.wins}\nDerrotas: ${score.loses}`))
+                localStorage.setItem('storedScore', JSON.stringify(score))
+            }
+        }
+
+        function coinFlip() {
+            coin = Math.random(),
+            coin <= 0.5 ? coin = 'Cara' : coin = 'Coroa';
+        }
+        function resetScore() {
+            score.wins = '0',
+            score.loses = '0',
+            localStorage.setItem('storedScore', JSON.stringify(score))
+            console.log('Placar reiniciado !')
+        }
+    </script>
+
+    <button id="Cara" onclick="
+    playerChoice('Cara')
+    ">Cara</button>
+
+    <button id="Coroa" onclick="
+    playerChoice('Coroa')
+    ">Coroa</button>
+
+    <button id="Jogar" onclick="
+    playerMove === ''
+    ?    alert('Selecione sua jogada.')
+    : (coinFlip(), updateScore())
+    ">Jogar Moeda</button>
+
+    <button onclick="
+        resetScore()
+    ">Reset Score</button>
+</body>
+</html>
