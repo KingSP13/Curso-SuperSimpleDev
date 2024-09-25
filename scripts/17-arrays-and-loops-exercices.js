@@ -1,6 +1,4 @@
-    /*
-
-
+/*
     //Ex 1
 
     const numArray = [10, 20, 30];
@@ -150,7 +148,6 @@ for(let i = 0; i < numBox1.length; i++) {
 }
 
 console.log(addedArrays)
-*/
 
 //Ex 11
 
@@ -163,3 +160,26 @@ for(let i = 0; i < numBox.length; i++) {
 }
 
 console.log(positiveNumbers)
+
+
+//Ex 12
+const wordBox = ['apple', 'grape', 'apple', 'strawberry', 'apple', 'grape', 'apple'];
+
+function countWords(words) {
+    const result = [];
+    
+    for (let i = 0; i < words.length; i++) {
+        const word = words[i];
+        
+        if (!result[word]) {
+            result[word] = 1;
+        } else {
+            result[word]++;
+    }
+    }
+    
+    return result;
+}
+
+console.log(countWords(wordBox));
+*/
