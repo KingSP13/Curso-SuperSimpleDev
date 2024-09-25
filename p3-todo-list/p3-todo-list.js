@@ -15,11 +15,11 @@ function renderTodoList() {
     for(let i = 0; i < myTodos.length; i++) {
         const todoObject = myTodos[i];
         const {name, dueDate} = todoObject;
-        const html = `<p>
-            ${name} ${dueDate}
+        const html = `
+            <div>${name}</div>
+            <div>${dueDate}</div>
             <button class="js-rmv-btn" data-index="${i}">Delete
-            </button>
-        </p>`;
+            </button>`;
         todoListHTML += html;
     }
         document.querySelector('.js-todo-list').innerHTML = todoListHTML;
@@ -36,7 +36,7 @@ function renderTodoList() {
 function addTodo() {
     const inputElement = document.querySelector('.js-todo-input');
     const name = inputElement.value;
-    const inputDate = document.querySelector('.jd-todo-date')
+    const inputDate = document.querySelector('.js-todo-date')
     const dueDate = inputDate.value
     
     if(name === '') {

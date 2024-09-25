@@ -1,0 +1,37 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+h1 {
+    font-size: x-large;
+}
+
+.js-todo-grid, .js-todo-list {
+    display: grid;
+    grid-template-columns: 250px 200px 150px;
+    column-gap: 10px;
+    row-gap: 10px;
+    align-items: center;
+    margin: 0 0 10px 10px
+}
+
+.js-todo-input, .js-todo-date {
+    padding: 6px;
+}
+
+.js-add-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-self: stretch;
+}
+
+.js-rmv-btn {
+    background-color: darkred;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding:  10px 0;
+}
