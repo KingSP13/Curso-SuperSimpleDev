@@ -41,7 +41,7 @@
 
         myArray.splice(0, 2)
         console.log(myArray)
-        */
+        
 
         let i = 1;
         while (i <= 5) {
@@ -62,7 +62,7 @@
 
         //Looping through an array, podemos usar o exemplo abaixo para acessar cada um dos valores armazenados em um dado array. Criando a variavel index como condição do loop e recebendo o valor '0', inicia a contagem a partir do primeiro valor armazenado, a condição é que o index deve ser 1 número menor que o número de valores total do array, incrementando por um a cada loop podemos verificar se chegou ao final, caso não, o loop é acionado novamente passando pelo segundo array e verificando novamente, incrementnado index em 1 novamente, e assim sucessivamente
 
-    /*
+    
     const myTodos = [
     'make dinner',
     'wash dishes',
@@ -83,7 +83,7 @@
         const value = myTodos[i]
         console.log(value);
     }
-    */
+    
 
 
     //Somando os valores numéricos de um array, accumulator pattern
@@ -106,6 +106,75 @@
     console.log(numsDoubled)
    }
 
-    </script>
+
+
+// Um exemplo sobre o comportamento dos objetos, como mencionado anteriormente, os objetos e arrays que usamos na linguagem JavaScript, são referências na memória e não variáveis contendo seus valores como variáveis comuns funcionam, por isso não podemos comparálos diretamente, mesmo igualando o array2 ao array1, ambos possuem a mesma referência na memória, não o mesmo array dentro de si. Uma forma de passar por isso é usando o método .slice, para destacarmos uma parte do array(ou ele todo), e armazenar no novo array.
+
+const array1 = [1, 2, 3];
+const array2 = array1.slice();
+array2.push(4);
+console.log(array1);
+console.log(array2);
+
+//SHORTCUT para armazenar um valor de um objeto numa variável, ou em várias variáveis, assim desestruturando(destructuring) o objeto em variáveis individuais.
+
+const [firstValue, secondValue, thirdValue] = [1, 2, 3]
+console.log(firstValue)
+console.log(secondValue)
+console.log(thirdValue)
+
+//Voltando a loops, menção a instrução "break;", que finaliza o loop imediatamente ao ser atingida, também funcional para o caso da estrutura de controle "switch;". Aqui também temos a instrução "continue;", que progride o loop com a exceção do valor que carrega, no caso '3', o loop segue contsagem de 0 a 10 porém com "continue === 3", sendo 'i === 3' o continue é disparado e o número 3 é pulado da contagem, chegando a 8 onde há a instrução "break;"
+
+for (let i = 0; i <= 10; i++) {
+    if(i === 3) {
+        continue;
+    }
+    console.log(i)
+    
+    if (i === 8) {
+        break;
+    }
+}
+
+for (let i = 0; i <= 10; i++) {
+    if(i%3 === 0 ) {
+        continue;
+    }
+    console.log(i)
+}
+
+let i = 1;
+
+while(i <= 10) {
+    if(i % 3 === 0) {
+        i++
+        continue;
+    }
+    console.log(i);
+    i++
+}
+
+//Um fator interessante sobre funções, é que são pedaços de código reutilizáveis, e podemos usar esses códigos diversas vezes adaptando para cada necessidade, no caso usamos a função 'doubleArray' para dobrar os valores numéricos de um array, usamos um código muito semelhante anteriormente mas com as novas mudanças, podemos utilizar qualquer array na mesma função e o resultado ainda é correto. Temos a aparição da instrução 'return', que devolve um valor para onde a função é chamada, e encerra imediatamente a função ao ser executado, no exemplo abaixo, ao encontrar um número 0 (zero), a função retorna o resultado sem chegar ao fim do array propriamente.
+
+const nums2 = [8, 7, 6];
+
+function doubleArray(nums) {
+    const numsDoubled = [];
+    for(let i = 0; i < nums.length; i++) {
+        const num = nums[i];
+        if (num === 0) {
+            return numsDoubled ;
+        }
+        numsDoubled.push(num * 2);
+    }
+    return numsDoubled;
+}
+doubleArray([2, 2, 2])
+doubleArray([2, 2, 5])
+doubleArray([nums2])
+
+console.log(doubleArray([2, 2, 5, 0, 5]))
+*/
+</script>
 </body>
 </html>
