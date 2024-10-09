@@ -95,8 +95,6 @@ function removeEgg(foods) {
 }
 removeEgg(foods)
 
-*/
-
 //Ex 5 - Example
 
 function removeEgg(foods) {
@@ -121,3 +119,26 @@ function removeEgg(foods) {
   }
 
   console.log(removeEgg(['egg', 'apple', 'egg', 'egg', 'ham']));
+
+*/
+
+
+//Ex 6
+
+const foods = ['egg', 'apple', 'egg', 'egg', 'ham']
+
+function removeEggs(foods) {
+    const newBasket = foods.reverse()
+    const result = [];
+    let removedEggs = 0
+    for (let i = 0; i < newBasket.length; i++) {
+     if (newBasket[i] === 'egg' && removedEggs < 2) {
+        removedEggs++
+        continue;
+     }   
+     result.push(newBasket[i])
+    }
+    return result
+}
+
+console.log(removeEggs(['egg', 'apple', 'egg', 'egg', 'ham', 'apple', 'egg', 'egg', 'ham']))
