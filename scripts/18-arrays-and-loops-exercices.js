@@ -120,8 +120,6 @@ function removeEgg(foods) {
 
   console.log(removeEgg(['egg', 'apple', 'egg', 'egg', 'ham']));
 
-*/
-
 
 //Ex 6
 
@@ -142,3 +140,64 @@ function removeEggs(foods) {
 }
 
 console.log(removeEggs(['egg', 'apple', 'egg', 'egg', 'ham', 'apple', 'egg', 'egg', 'ham']))
+
+//Ex 7
+
+const foods = ['egg', 'apple', 'egg', 'egg', 'ham']
+
+function removeEggs(foods) {
+
+    const newBasket = foods.slice()
+    const result = [];
+    console.log(foods)
+    console.log(newBasket)
+    let removedEggs = 0
+    for (let i = 0; i < newBasket.length; i++) {
+        if (newBasket[i] === 'egg' && removedEggs < 2) {
+            removedEggs++
+            continue;
+        }   
+        result.push(newBasket[i])
+    }
+    
+    return result
+}
+
+console.log(foods)
+console.log(removeEggs(foods))
+
+//Ex 8 
+
+for(let i = 1; i <= 30; i++) {
+
+    if (i%3 === 0 || i%5 === 0) {
+        if(i%3 === 0 && i%5 === 0) {
+            console.log('FizzBuzz')
+        } else if (i%3 === 0) {
+            console.log('Fizz')
+        } else if (i%5 === 0) {
+            console.log('Buzz')
+        }
+    } else {
+        console.log([i])
+    }
+}
+
+//Ex 9
+
+function arrayUnique(array) {
+    let arrayUnique = []
+    for (let i = 0; i < array.length; i++) {
+        if (!arrayUnique.includes(array[i])) {
+        arrayUnique.push(array[i])
+        }
+    }
+    return arrayUnique;
+}
+
+let colors = ['Green', 'Red', 'Yellow', 'Red', 'Red', 'Yellow', 'Red', 'Black', 'Blue', 'Green']
+console.log(arrayUnique(colors))
+
+//Ex10 Done !
+*/
+
