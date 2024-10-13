@@ -1,6 +1,6 @@
 /*
-funções também são valores, sendo assim podemos armazena-las em variáveis. HOISTING !!!
-Pelo que entendi, podemos chamar uma função antes mesmo de cria-la
+//funções também são valores, sendo assim podemos armazena-las em variáveis. HOISTING !!!
+//Pelo que entendi, podemos chamar uma função antes mesmo de cria-la
 
 function greeting () {
     console.log('Hello')
@@ -14,6 +14,7 @@ const num = 2;
 const function1 = function () {
     console.log('Hello 2')
 };
+console.log(typeof function1)
 
 const obj1 = {
     num: 2,
@@ -33,7 +34,7 @@ function display(param) {
 
 display(2);
 
-//Basicamente voce pode criar uma função para executar uma tarefa ou processar algum dado de determinada forma, quando voce cria ela já com PARÂMETROS FORMAIS, que é o que fica entre os parentesis, voce pode só jogar o valor dentro da função quando vai chama-la, como fizemos no doc18 de exercicios ou nesse priemiro exemplo também.
+//Basicamente voce pode criar uma função para executar uma tarefa ou processar algum dado de determinada forma, quando voce cria ela já com PARÂMETROS FORMAIS, que é o que fica entre os parêntesis, voce pode só jogar o valor dentro da função quando vai chama-la, como fizemos no doc18 de exercicios ou nesse priemiro exemplo também.
 
 function display(param) {
     console.log(param)
@@ -66,7 +67,7 @@ setInterval(function() {
 
 console.log('next line 2')
 
-*/
+
 // Agora usando o método forEach(), temos outra forma de percorrer um array, como podemos ver no código abaixo, dado um objeto de um conjunto de strings, o método forEach() recebe uma função, que vai se repetir por todo o array que ela for empregada, no caso usamos o placeholder 'value' para simbolizar o elemento do array, o método forEach() inicia o array, pega o primeiro elemento e insere na dda função, executa o código, e retorna para o segundo elemento, repetindo o processo até ter passado por todos os elementos do array especificado. Também é o método preferido para percorrer um array já que é muito mais facil de ler do que o método utilizado previamente com for loop.
 [
     'make dinner',
@@ -83,3 +84,5 @@ console.log('next line 2')
 //No caso do uso do for loop temos uma ferramenta que o método forEach não possui, o return, que nos permite pular uma iteração, no forEach ela não existe então é utilizado o 'return' como demonstrado acima, a iteração 'wash dishes' foi pulada e não exibida no console.
 
 //Exemplo prático para o código acima, em todo list project
+
+*/
