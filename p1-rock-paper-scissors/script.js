@@ -27,14 +27,16 @@ document.querySelector('.auto-play-btn')
 });
 
 const keyboardPlay = (event) => {
-    if(event.key == 'r') {
+    if(event.key === 'r') {
         playGame('rock');
-    } else if (event.key == 'p') {
+    } else if (event.key === 'p') {
         playGame('paper')
-    } else if (event.key == 's') {
+    } else if (event.key === 's') {
         playGame('scissors')
-    } else if (event.key == ' ') {
+    } else if (event.key === 'a') {
         autoPlay()
+    } else if (event.key === 'Backspace') {
+        scoreReset()
     }
 }
 
@@ -54,11 +56,14 @@ if(!isAutoPlaying) {
     intervalId = setInterval(() => {
         const playerMove = pickComputerMove();
         playGame(playerMove);
+
     }, 1000);
     isAutoPlaying = true;
+    document.querySelector('.auto-play-btn').innerText = 'Stop Playing.'
 } else {
     clearInterval(intervalId);
     isAutoPlaying = false;
+    document.querySelector('.auto-play-btn').innerText = 'Auto Play.'
 }
 }
 const playGame = playerMove => {
@@ -123,9 +128,14 @@ if (randomNum >= 0 && randomNum < 1 / 3) {
 return computerMove;
 }
 const scoreReset = () => {
-score.wins = 0,
-score.losses = 0,
-score.ties = 0
+    if (confirm('Reset score ?')) {
+        score.wins = 0,
+        score.losses = 0,
+        score.ties = 0
+    } else {
+        return;
+    }
+
 localStorage.removeItem('score')
 document.querySelector('.js-result').innerText = 'Score Reseted !';
 document.querySelector('.js-moves').innerText = '';

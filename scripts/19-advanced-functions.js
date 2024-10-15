@@ -107,7 +107,7 @@ console: click
 console: click 2
 */
 
-
+/*
 // Também temos o método "removeEventListener()", para removermos o event listener caso não quisermos que seja mais executado. Para isso, armazenaremos a função em uma variável, pois o método .removeEventListener exige que a função seja exatamente igual para que ocorra como esperado
 
 const buttonElement = document.querySelector('.js-button');
@@ -127,8 +127,32 @@ buttonElement.addEventListener("click", eventListenerCode)
 buttonElement.addEventListener("click", eventListenerCode2)
 
 buttonElement.removeEventListener("click", eventListenerCode2)
-
+*/
 /*
 retorno esperado:
 console: 'click'
 */
+
+
+//Agora teremos exemplos dos metodos .filter() e .map(), iniciando com o método .filter(), se quisermos por exemplo uma cópia do array [1, -3, 5] apenas com números positivos
+
+console.log([1, -3, 5].filter((value, index) => {
+
+    // if(value >= 0) {
+    //     return true
+    // } else {
+    //     return false
+    // }
+
+    return value >= 0
+}));
+
+//Ambos os trechos de código acima desempenham a mesma função, o modo de baixo é apenas um shortcut, usando o if statement podemos observar que dada a condição e o retorno de positivo ou falso, armazenamos o elemento no novo array ou apenas pulamos e o deixamos de fora caso não atenda ao criterio especificado.
+
+//Agora abordando o método .map(), digamos que temos um array de números novamente por exemplo o [1, 1, 3], caso queiramos duplicar cada elemento dentro do array, podemos usar o método .map()
+
+console.log([1, 1, 3].map((value, index) => {
+    return value * 2
+}));
+
+// O método .map, tranforma um dado array, em outro array modificado por uma função desejada.

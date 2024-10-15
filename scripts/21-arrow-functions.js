@@ -26,7 +26,7 @@ const oneLine = () => 2 + 3;
 console.log(oneLine())
 //Oneliner, função oneliner é quando tem apenas uma linha, fazendo assim o uso dos colchetes, opcional.
 
-*/
+
 
 [
     'wash dishes',
@@ -63,3 +63,19 @@ const object1 = {
 object1["fun"]()
 object1.function1()
 object1.function2()
+
+*/
+
+//Shortcuts para arrow functions:
+//Como dado o código abaixo, estudado na seção de funções avancadas:
+
+console.log([1, 1, 3].map((value, index) => {
+    return value * 2
+}));
+
+//Podemos simplificar o código acima o escrevendo da seguinte forma:
+
+console.log([1, 1, 3].map(value => value * 2));
+
+//Assim o deixando muito mais compacto e limpo, como não utilizamos o eleento 'index', pudemos remove-lo, então apenas usando um parâmetro os parentesis se tornam opcionais, o valor return não precisa ser escrito já que temos um único valor ao fim da função, então podemos remover os colchetes também e mante-lo numa linha só
+
