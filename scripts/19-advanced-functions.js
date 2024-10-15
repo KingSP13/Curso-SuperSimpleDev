@@ -85,4 +85,50 @@ console.log('next line 2')
 
 //Exemplo prático para o código acima, em todo list project
 
+// Abordando o método .addEventListener, o método event listener pode ser usado quando quisermos disparar uma função de acordo com alguma ação do usuário, como aplicamos anteriomente direto no código HTML usando o atributo "onclick: function1()", podemos capturar o elemento HTML o armazenando numa variável, e atribuindo o método a ele como no exemplo a seguir:
+
+const buttonElement = document.querySelector('.js-button');
+
+// Aqui passaremos uma arrow function para ser executada ao evento ser disparado
+
+buttonElement.addEventListener("click", () => {
+    console.log('click');
+})
+
+// Uma vantagem de usar o event listener, é que podemos atribui-lo diversas vezes e disparar mais de um evento a determinada ação no elemento especificado, aqui adicionamos mais um event listener ao mesmo evento.
+
+buttonElement.addEventListener("click", () => {
+    console.log('click 2');
+})
+*/
+
+/* Retorno esperado:
+console: click
+console: click 2
+*/
+
+
+// Também temos o método "removeEventListener()", para removermos o event listener caso não quisermos que seja mais executado. Para isso, armazenaremos a função em uma variável, pois o método .removeEventListener exige que a função seja exatamente igual para que ocorra como esperado
+
+const buttonElement = document.querySelector('.js-button');
+
+const eventListenerCode = () => {
+    console.log('click');
+}
+
+const eventListenerCode2 = () => {
+    console.log('click 2');
+}
+
+//Criadas duas funções distintas, atribuidas cada uma a um eventlistener distinto, podemos atribuir ao removeEventListener a função desejada para ter seu eventListener removido como no exemplo abaixo:
+
+buttonElement.addEventListener("click", eventListenerCode)
+
+buttonElement.addEventListener("click", eventListenerCode2)
+
+buttonElement.removeEventListener("click", eventListenerCode2)
+
+/*
+retorno esperado:
+console: 'click'
 */

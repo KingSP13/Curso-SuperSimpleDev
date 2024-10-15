@@ -50,8 +50,6 @@ function interact() {
     }, 2000)
 }
 
-*/
-
 //Ex 5
 
 setInterval(function() {
@@ -61,3 +59,45 @@ setInterval(function() {
       document.title = 'Advanced functions exercices';
     }
   }, 2000);
+
+//Ex 6
+
+const addBtn = document.querySelector('.addMsg');
+addBtn.addEventListener("click", renderNewMessages);
+addBtn.addEventListener("click", funAddMsg);
+
+const rmvBtn = document.querySelector('.rmvMsg');
+rmvBtn.addEventListener("click", renderNewMessages);
+rmvBtn.addEventListener("click", funRmvMsg);
+
+let newMsgs = 0;
+
+const setIntervalId = setInterval(function() {
+  if(newMsgs === 0) {
+    document.title = 'Advanced functions exercices';
+  } else {  
+  if (document.title === 'Advanced functions exercices') {
+    document.title = `(${newMsgs}) New Messages`;
+  } else {
+    document.title = 'Advanced functions exercices';
+  }
+}
+}, 2000);
+
+
+function funAddMsg() {
+  newMsgs++
+}
+function funRmvMsg() {
+  if(newMsgs <= 0) {
+    return;
+  } else {
+    newMsgs--
+  }
+}
+
+function renderNewMessages () {
+  setIntervalId
+}
+
+*/

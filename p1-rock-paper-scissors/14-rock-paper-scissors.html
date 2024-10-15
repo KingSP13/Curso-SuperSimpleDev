@@ -10,20 +10,11 @@
 <body>
     <h1 class="title">Rock, Paper, Scissor's Game</h1>
 
-    <button id="rock" onclick="
-    playGame('Rock');
+    <button class="rock"><img src="../assets/rock.png" alt="Rock icon"></button>
 
-    "><img src="../assets/rock.png" alt="Rock icon"></button>
+    <button class="paper"><img src="../assets/paper.png" alt="Paper icon"></button>
 
-    <button id="paper" onclick="
-    playGame('Paper');
-
-    "><img src="../assets/paper.png" alt="Paper icon"></button>
-
-    <button id="scissors" onclick="
-    playGame('Scissors');
-
-    "><img src="../assets/scissors.png" alt="Scissors icon"></button>
+    <button class="scissors"><img src="../assets/scissors.png" alt="Scissors icon"></button>
 
 <div class="info">
     <p class="js-result"></p>
@@ -31,11 +22,7 @@
     <p class="js-score"></p>
 </div>
 
-    <button class="reset-button" onclick="
-        scoreReset()
-        ">Reset Score.</button>
-    <button class="auto-play-btn" onclick="
-        autoPlay();
-        " >Auto Play.</button>
+    <button class="reset-button">Reset Score.</button>
+    <button class="auto-play-btn" >Auto Play.</button>
 </body>
 </html>

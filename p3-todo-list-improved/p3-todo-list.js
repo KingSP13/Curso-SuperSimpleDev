@@ -1,18 +1,9 @@
-const addQueue = document.querySelector('.js-add-btn')
-addQueue.addEventListener("click", addTodo)
-
-const todoInput = document.querySelector('.js-todo-input')
-todoInput.addEventListener("keydown", addTodoKeydown)
-
-const rmvQueue = document.querySelector('.js-rmv-btn')
-rmvQueue.addEventListener("click", rmvTodo)
-
 const myTodos = [];
 
-function renderTodoList() {
+const renderTodoList = () => {
         let todoListHTML = '';
 
-myTodos.forEach (function (todoObject, index) {
+myTodos.forEach ( (todoObject, index) => {
         const {name, dueDate} = todoObject;
         const html = `
             <div>${name}</div>
@@ -20,7 +11,7 @@ myTodos.forEach (function (todoObject, index) {
             <button class="js-rmv-btn" data-index="${index}">Delete
             </button>`;
         todoListHTML += html;
-});
+        });
 
     //Código substituído pelo método forEach acima.
 
@@ -34,18 +25,18 @@ myTodos.forEach (function (todoObject, index) {
     //         </button>`;
     //     todoListHTML += html;
     // }
-        document.querySelector('.js-todo-list').innerHTML = todoListHTML;
+document.querySelector('.js-todo-list').innerHTML = todoListHTML;
 
 
-        const deleteButtons = document.querySelectorAll('.js-rmv-btn');
-        deleteButtons.forEach(button => {
-        button.addEventListener('click', rmvTodo);
+const deleteButtons = document.querySelectorAll('.js-rmv-btn');
+deleteButtons.forEach(button => {
+    button.addEventListener('click', rmvTodo);
     });
-    }
+}
 
     
 
-function addTodo() {
+const addTodo = () => {
     const inputElement = document.querySelector('.js-todo-input');
     const name = inputElement.value;
     const inputDate = document.querySelector('.js-todo-date')
@@ -64,15 +55,24 @@ function addTodo() {
 }
 
 }
-function addTodoKeydown(event) {
+const addTodoKeydown = event => {
     if(event.key === 'Enter') {
         addTodo();
     } }
 
-function rmvTodo(event) {
+const rmvTodo = event => {
     const index = event.target.getAttribute('data-index');
     myTodos.splice(index, 1);
     renderTodoList();
 }
+
+const addQueue = document.querySelector('.js-add-btn')
+addQueue.addEventListener("click", addTodo)
+
+const todoInput = document.querySelector('.js-todo-input')
+todoInput.addEventListener("keydown", addTodoKeydown)
+
+const rmvQueue = document.querySelector('.js-rmv-btn')
+rmvQueue.addEventListener("click", rmvTodo)
 
 renderTodoList()

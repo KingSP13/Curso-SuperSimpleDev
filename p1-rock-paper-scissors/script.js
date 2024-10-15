@@ -1,6 +1,45 @@
 let paragraphResult = document.querySelector('.js-result');
 let paragraphMoves = document.querySelector('.js-moves');
 let paragraphScore = document.querySelector('.js-score');
+
+//Estudo de funções, aqui uso as duas formas que poderia ter chamado a função, a forma recomendada usando arrow functions com leitura facilitada, porém eventlisteners não recebem parâmetros, então eu basicamente chamo uma função para chamar uma função, e nessa função final eu incluo o parametro que quero que seja passado, exemplo no botão 'scissors'
+
+document.querySelector('.rock')
+.addEventListener("click", () => {
+    playGame('rock')
+});
+document.querySelector('.paper')
+.addEventListener("click", () => {
+    playGame('paper')
+});
+document.querySelector('.scissors')
+.addEventListener("click", function() {
+    playGame('scissors')
+});
+ 
+document.querySelector('.reset-button')
+.addEventListener("click", () => {
+    scoreReset()
+});
+document.querySelector('.auto-play-btn')
+.addEventListener("click", () => {
+    autoPlay()
+});
+
+const keyboardPlay = (event) => {
+    if(event.key == 'r') {
+        playGame('rock');
+    } else if (event.key == 'p') {
+        playGame('paper')
+    } else if (event.key == 's') {
+        playGame('scissors')
+    } else if (event.key == ' ') {
+        autoPlay()
+    }
+}
+
+document.body.addEventListener("keydown", keyboardPlay)
+
 let score = JSON.parse(localStorage.getItem('score')) || {
 wins:0,
 losses: 0,
@@ -10,9 +49,9 @@ ties: 0
 let isAutoPlaying = false;
 let intervalId;
 
-function autoPlay() {
+const autoPlay = () => {
 if(!isAutoPlaying) {
-    intervalId = setInterval(function() {
+    intervalId = setInterval(() => {
         const playerMove = pickComputerMove();
         playGame(playerMove);
     }, 1000);
@@ -22,35 +61,35 @@ if(!isAutoPlaying) {
     isAutoPlaying = false;
 }
 }
-function playGame(playerMove) {
+const playGame = playerMove => {
     const computerMove = pickComputerMove();
     let result = '';
 
-if (playerMove === 'Scissors') {
+if (playerMove === 'scissors') {
 
-    if (computerMove === 'Scissors') {
+    if (computerMove === 'scissors') {
         result = 'Tie.'
-    } else if  (computerMove === 'Rock') {
+    } else if  (computerMove === 'rock') {
         result = 'You lose.'
-    } else if (computerMove === 'Paper') {
+    } else if (computerMove === 'paper') {
         result = 'You win.'
     }
 
-    } else if (playerMove === 'Paper') {
-    if (computerMove === 'Paper') {
+    } else if (playerMove === 'paper') {
+    if (computerMove === 'paper') {
     result = 'Tie.'
-    } else if  (computerMove === 'Scissors') {
+    } else if  (computerMove === 'scissors') {
         result = 'You lose.'
-    } else if (computerMove === 'Rock') {
+    } else if (computerMove === 'rock') {
         result = 'You win.'
     }
     
-    } else if ('Rock') {
-        if (computerMove === 'Rock') {
+    } else if ('rock') {
+        if (computerMove === 'rock') {
     result = 'Tie.'
-    } else if  (computerMove === 'Paper') {
+    } else if  (computerMove === 'paper') {
         result = 'You lose.'
-    } else if (computerMove === 'Scissors') {
+    } else if (computerMove === 'scissors') {
         result = 'You win.'
     }
     }
@@ -70,20 +109,20 @@ paragraphMoves.innerHTML = (`You <img src="../assets/${playerMove}.png"> X <img 
 paragraphScore.innerText = (`\nScore: Wins: ${score.wins} Losses: ${score.losses} Ties: ${score.ties}`)
 }
 
-function pickComputerMove() {
+const pickComputerMove = () => {
 randomNum = Math.random();
 
 if (randomNum >= 0 && randomNum < 1 / 3) {
-    computerMove = 'Scissors'
+    computerMove = 'scissors'
 } else if (randomNum >= 1/3 && randomNum < 2 / 3) {
-    computerMove = 'Rock'
+    computerMove = 'rock'
 } else if (randomNum >= 2/3 && randomNum <= 1) {
-    computerMove = 'Paper'
+    computerMove = 'paper'
 }
 
 return computerMove;
 }
-function scoreReset() {
+const scoreReset = () => {
 score.wins = 0,
 score.losses = 0,
 score.ties = 0
