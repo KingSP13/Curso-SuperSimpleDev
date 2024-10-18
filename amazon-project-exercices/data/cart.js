@@ -5,6 +5,8 @@ document.querySelectorAll('.add-to-cart-button')
     button.addEventListener('click', () => {
         const productId = button.dataset.productId
         let matchingItem;
+        let quantitySelector = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+
         cart.forEach((item) => {
             if(productId === item.productId) {
                 matchingItem = item
@@ -12,11 +14,11 @@ document.querySelectorAll('.add-to-cart-button')
         })
 
         if(matchingItem) {
-           matchingItem.quantity += document.querySelector(`js-quantity-selector-${product.id}`)
+           matchingItem.quantity += quantitySelector
         } else {
             cart.push({
                 productId: productId,
-                quantity: 1
+                quantity: quantitySelector
             });
         }
         let cartQuantity = 0
@@ -25,6 +27,5 @@ document.querySelectorAll('.add-to-cart-button')
             cartQuantity += item.quantity
         });
         document.querySelector('.cart-quantity').innerHTML = cartQuantity
-        console.log(`js-quantity-selector-${product.id}`)
     });
 });
