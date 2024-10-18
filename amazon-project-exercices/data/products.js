@@ -656,5 +656,37 @@ const product = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "id1",
+    image: "images/products/backpack.jpg",
+    name: "Backpack Cargo Zipper",
+    rating: {
+      stars: 4.5,
+      count: 168
+    },
+    priceCents: 4100,
+    keywords: [
+      "backpack",
+      "travel",
+      "apparel",
+      "mens"
+    ]
+  },
+  {
+    id: "id2",
+    image: "images/products/umbrella.jpg",
+    name: "Umbrella Classic Retractable",
+    rating: {
+      stars: 5,
+      count: 277
+    },
+    priceCents: 899,
+    keywords: [
+      "rain",
+      "rainy",
+      "umbrella",
+      "unissex"
+    ]
   }
 ];
