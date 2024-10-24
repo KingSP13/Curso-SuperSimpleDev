@@ -42,7 +42,7 @@ cart.forEach((cartItem) => {
               Update
             </span>
             <input class="quantity-input">
-            <span class="save-quantity-link link-primary js-save-link save-link-${matchingProduct.id}"
+            <span class="save-quantity-link link-primary js-save-link"
             data-product-id="${matchingProduct.id}">
             Save
             </span>
@@ -131,28 +131,26 @@ document.querySelectorAll('.js-update-link')
       const container = document.querySelector(
         `.js-cart-item-container-${productId}`
       );
-      container.classList.add('is-editing-quantity');
       (function() {
+        container.classList.add('is-editing-quantity');
         document.querySelector('.js-update-link').classList.add('disappear')
         document.querySelector('.quantity-label').classList.add('disappear')
       })()
     });
   });
 
-  // document.querySelectorAll('.js-update-link')
-  // .forEach((link) => {
-  //   link.addEventListener('click', () => {
-  //     const {productId} = link.dataset
-  //     const container = document.querySelector(
-  //       `.js-cart-item-container-${productId}`
-  //     );
-  //     container.classList.add('is-editing-quantity');
-  //     (function() {
-  //       document.querySelector('.quantity-display').classList.add('disappear')
-  //       document.querySelector('.update-quantity-').classList.add('disappear')
-  //     })()
-  //   });
-  // });
+  document.querySelectorAll('.js-save-link')
+  .forEach((link) => {
+    link.addEventListener('click', () => {
+      const {productId} = link.dataset
+      const container = document.querySelector(
+        `.js-cart-item-container-${productId}`
+      );
+      (function() {
+        container.classList.remove('is-editing-quantity')
+        document.querySelector('.js-update-link').classList.remove('disappear')
+        document.querySelector('.quantity-label').classList.remove('disappear')
 
-
-  // quantity-display update-quantity-link
+      })()
+    });
+  });
