@@ -215,7 +215,7 @@
   display: none;
 }
 
-.js-save-link {
+.save-quantity-link {
   display: none;
 }
 
@@ -223,10 +223,14 @@
   display: initial;
 }
 
-.is-editing-quantity .js-save-link {
+.is-editing-quantity .save-quantity-link {
   display: initial;
 }
 
-.disappear {
-  display: none
+.is-editing-quantity .quantity-label {
+  display: none;
+}
+
+.is-editing-quantity .update-quantity-link {
+  display: none;
 }
