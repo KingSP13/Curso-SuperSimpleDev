@@ -6,6 +6,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import {renderPaymentSummary} from './paymentSummary.js';
 
+
 export function renderOrderSummary() {
   let cartSummaryHTML = '';
 
@@ -26,6 +27,7 @@ export function renderOrderSummary() {
     const dateString = deliveryDate.format(
       'dddd, MMMM D'
     );
+
 
     cartSummaryHTML += `
       <div class="cart-item-container
@@ -77,14 +79,8 @@ export function renderOrderSummary() {
     let html = '';
 
     deliveryOptions.forEach((deliveryOption) => {
-      const today = dayjs();
-      const deliveryDate = today.add(
-        deliveryOption.deliveryDays,
-        'days'
-      );
-      const dateString = deliveryDate.format(
-        'dddd, MMMM D'
-      );
+
+      calculateDeliveryDate()
 
       const priceString = deliveryOption.priceCents === 0
         ? 'FREE'
@@ -115,6 +111,7 @@ export function renderOrderSummary() {
     return html;
   }
 
+
   document.querySelector('.js-order-summary')
     .innerHTML = cartSummaryHTML;
 
@@ -128,7 +125,6 @@ export function renderOrderSummary() {
           `.js-cart-item-container-${productId}`
         );
         container.remove();
-
         renderPaymentSummary();
       });
     });
