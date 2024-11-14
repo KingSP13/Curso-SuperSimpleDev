@@ -1,6 +1,4 @@
-
 export function getProduct(productId) {
-
   let matchingProduct;
 
   products.forEach((product) => {
@@ -9,8 +7,7 @@ export function getProduct(productId) {
     }
   });
 
-  return matchingProduct
-
+  return matchingProduct;
 }
 
 export const products = [
@@ -59,38 +56,6 @@ export const products = [
     ],
     type: "clothing",
     sizeChartLink: "images/clothing-size-chart.png"
-  },
-  {
-    id: "id1",
-    image: "images/products/backpack.jpg",
-    name: "Backpack Cargo Zipper",
-    rating: {
-      stars: 4.5,
-      count: 168
-    },
-    priceCents: 4100,
-    keywords: [
-      "backpack",
-      "travel",
-      "apparel",
-      "mens"
-    ]
-  },
-  {
-    id: "id2",
-    image: "images/products/umbrella.jpg",
-    name: "Umbrella Classic Retractable",
-    rating: {
-      stars: 5,
-      count: 277
-    },
-    priceCents: 899,
-    keywords: [
-      "rain",
-      "rainy",
-      "umbrella",
-      "unissex"
-    ]
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
