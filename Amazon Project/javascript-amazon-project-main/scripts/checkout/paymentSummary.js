@@ -1,81 +1,69 @@
-import {cart, addToCart} from '../data/cart.js';
-import {products} from '../data/products.js';
-import {formatCurrency} from './utils/money.js';
+import {cart} from '../../data/cart.js';
+import {getProduct} from '../../data/products.js';
+import {getDeliveryOption} from '../../data/deliveryOptions.js';
+import {formatCurrency} from '../utils/money.js';
 
-let productsHTML = '';
-
-products.forEach((product) => {
-  productsHTML += `
-    <div class="product-container">
-      <div class="product-image-container">
-        <img class="product-image"
-          src="${product.image}">
-      </div>
-
-      <div class="product-name limit-text-to-2-lines">
-        ${product.name}
-      </div>
-
-      <div class="product-rating-container">
-        <img class="product-rating-stars"
-          src="images/ratings/rating-${product.rating.stars * 10}.png">
-        <div class="product-rating-count link-primary">
-          ${product.rating.count}
-        </div>
-      </div>
-
-      <div class="product-price">
-        $${formatCurrency(product.priceCents)}
-      </div>
-
-      <div class="product-quantity-container">
-        <select>
-          <option selected value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-      </div>
-
-      <div class="product-spacer"></div>
-
-      <div class="added-to-cart">
-        <img src="images/icons/checkmark.png">
-        Added
-      </div>
-
-      <button class="add-to-cart-button button-primary js-add-to-cart"
-      data-product-id="${product.id}">
-        Add to Cart
-      </button>
-    </div>
-  `;
-});
-
-document.querySelector('.js-products-grid').innerHTML = productsHTML;
-
-function updateCartQuantity() {
-  let cartQuantity = 0;
+export function renderPaymentSummary() {
+  let productPriceCents = 0;
+  let shippingPriceCents = 0;
 
   cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
+    const product = getProduct(cartItem.productId);
+    productPriceCents += product.priceCents * cartItem.quantity;
+
+    const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
+    shippingPriceCents += deliveryOption.priceCents;
   });
 
-  document.querySelector('.js-cart-quantity')
-    .innerHTML = cartQuantity;
+  const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
+  const taxCents = totalBeforeTaxCents * 0.1;
+  const totalCents = totalBeforeTaxCents + taxCents;
+
+  const paymentSummaryHTML = `
+    <div class="payment-summary-title">
+      Order Summary
+    </div>
+
+    <div class="payment-summary-row">
+      <div>Items (3):</div>
+      <div class="payment-summary-money">
+        $${formatCurrency(productPriceCents)}
+      </div>
+    </div>
+
+    <div class="payment-summary-row">
+      <div>Shipping &amp; handling:</div>
+      <div class="payment-summary-money">
+        $${formatCurrency(shippingPriceCents)}
+      </div>
+    </div>
+
+    <div class="payment-summary-row subtotal-row">
+      <div>Total before tax:</div>
+      <div class="payment-summary-money">
+        $${formatCurrency(totalBeforeTaxCents)}
+      </div>
+    </div>
+
+    <div class="payment-summary-row">
+      <div>Estimated tax (10%):</div>
+      <div class="payment-summary-money">
+        $${formatCurrency(taxCents)}
+      </div>
+    </div>
+
+    <div class="payment-summary-row total-row">
+      <div>Order total:</div>
+      <div class="payment-summary-money">
+        $${formatCurrency(totalCents)}
+      </div>
+    </div>
+
+    <button class="place-order-button button-primary">
+      Place your order
+    </button>
+  `;
+
+  document.querySelector('.js-payment-summary')
+    .innerHTML = paymentSummaryHTML;
 }
-
-document.querySelectorAll('.js-add-to-cart')
-  .forEach((button) => {
-    button.addEventListener('click', () => {
-      const productId = button.dataset.productId;
-      addToCart(productId);
-      updateCartQuantity();
-    });
-  });
