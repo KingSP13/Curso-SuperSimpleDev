@@ -71,6 +71,8 @@ function updateCartQuantity() {
     .innerHTML = cartQuantity;
 }
 
+updateCartQuantity()
+
 const addedMessageTimeouts = {};
 
 document.querySelectorAll('.js-add-to-cart')
