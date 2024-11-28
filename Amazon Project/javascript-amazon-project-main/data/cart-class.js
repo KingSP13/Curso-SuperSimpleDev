@@ -2,7 +2,8 @@
 
 class Cart {
 
-    //SHORTCUT para propriedades de classes que são 'undefined', é só declara-la e ponto-virgula, como mostrado abaixo nas duas formas
+    //SHORTCUT para propriedades de classes que são 'undefined', é só declara-la e ponto-virgula, como mostrado abaixo nas duas formas.
+    
     cartItems = undefined;
     localStorageKey;
 
