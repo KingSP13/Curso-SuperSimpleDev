@@ -25,7 +25,8 @@ export function renderCheckoutHeader() {
     </div>
   `;
 
-  document.querySelector('.js-checkout-header')
+   document.querySelector('.js-checkout-header')
     .innerHTML = checkoutHeaderHTML;
 }
+// TODO remove esse comentário pq o jasmine ta fazendo graça e o teste não funciona se a função de renderizar o header estiver aí
 renderCheckoutHeader()
