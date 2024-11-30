@@ -68,6 +68,7 @@ class Clothing extends Product{
 }
 
 //EXEMPLO: Com a classe Clothing VAZIA, o teste foi realizado e respondeu de acordo, mesmo sem nenhuma adição a classe, o produto foi criado, exibido no console e o método getPrice() funcionou de acordo.
+/* TEST CODE
 const tshirt = new Clothing(
   {
     id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
@@ -88,10 +89,12 @@ const tshirt = new Clothing(
   });
   console.log(tshirt)
   console.log(tshirt.getPrice())
+*/
   
 
 
 //Aqui entregamos o objeto completo para ser consumido pela constructor, passando como parámetro podemos converter os dados agrupados num objeto para uma classe
+/* TEST CODE
 const product1 = new Product({
   id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
   image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -107,6 +110,36 @@ const product1 = new Product({
     "apparel"
   ]
 });
+*/
+
+
+//Built-in classes: um exemplo é a classe 'Date', que exibe o horário atual de quando a classe é chamada, ela possui um método chamado '.toLocaleTimeString', que exibe apenas as horas, é útil porém a biblioteca que utilizamos anteriormente possui mais recursos de formatação e etc, então esta classe não costuma ser usada, na verdade também preferi o uso da lib, parece mais dinâmico e mais completo do que usar a classe diretamente.
+/* TEST CODE
+const date = new Date();
+console.log(date)
+console.log(date.toLocaleTimeString());
+*/
+
+//Aprofundando na referência dinâmica 'this', o 'this' é uma palavra chave que referencia o objeto atual e pode ser usado em qualquer lugar do código, como no exemplo abaixo ele está sendo usado isoladamente fora de um objeto, neste caso não existe um objeto pai então a info de saída é 'undefined'
+
+console.log(this)
+
+//Outro exemplo de como o 'this' funciona abaixo, inicializando o objeto object2 demos a ele a propriedade a: 2 e b: this.a, que pode parece que a propriedade 'b' vai receber 2 pelo this apontar ao próprio objeto e o valor de a ser 2, porém o objeto ainda não foi inicializado por completo, então b vai receber 'undefined'. As aplicações que temos é normalmente em métodos, onde aponta ao objeto pai.
+/* TEST CODE
+const object2 = {
+  a: 2,
+  b: this.a
+};
+*/
+
+//O 'this' também pode ser utilizado dentro de uma função, no caso ela retorna 'undefined' por não estar dentro de um objeto, mas as funções em JavaScript possuem um método chamado '.call' que executa a função, como normalmente acontece, porém ele recebe os parâmetros a serem passados para a função, sendo um adicional, o primeiro deles é o valor que 'this' vai adotar, no exemplo abaixo, o 'this' foi substituído por 'hello'.
+function logThis(param1, param2) {
+  console.log(this)
+  console.log(param1)
+  console.log(param2)
+}
+logThis();
+logThis.call('hello', 'param1', 'param2');
 
 export const products = [
   {
