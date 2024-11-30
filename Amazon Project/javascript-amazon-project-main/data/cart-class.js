@@ -3,9 +3,11 @@
 class Cart {
 
     //SHORTCUT para propriedades de classes que são 'undefined', é só declara-la e ponto-virgula, como mostrado abaixo nas duas formas.
-    
+
     cartItems = undefined;
-    localStorageKey;
+    #localStorageKey;
+
+    //Em localStorageKey, armazenamos a chave que vai ser usada para bucar os dados salvos no localStorage, par agarantir certa 'imutabilidade', usamos ela como propriedade privada, adicionando o hash # em frente onde ela for invocada, para demonstrar que ela só pode ser usada dentro da classe em que é criada, caso não contenha o hash (#) ela é declarada como propriedade pública, funciona semelhante ao escopo de funções.
 
     //Um 'constructor' tem uma função semelhante a de uma função comum, mas quando o objeto for gerado, o código de dentro é executado automaticamente.
 
@@ -13,14 +15,15 @@ class Cart {
 
         //Aqui temos as 'instâncias' da classe, que são os objetos gerados a partir delas.
 
-        this.localStorageKey = localStorageKey
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey
+        this.#loadFromStorage();
 
         //Mais detalhes sobre o método especial 'constructor', 1 - precisa ser invocado com a string 'constructor' exatamente, não pode ser renomeado como fazemos com funções. 2 - O método especial 'constructor' não deve retornar nada.
     }
 
-    loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+    //O mesmo se aplica para métodos, podemos ter um método privado pelos mesmos motivos que temos propriedades privadas, funciona da mesma forma com o hash (#) antes da declaração e quando for invocado, também previne reatribuição.
+    #loadFromStorage() {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
         
         if (!this.cartItems) {
             this.cartItems = [{
@@ -35,7 +38,7 @@ class Cart {
         }
     }
     saveToStorage () {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
     addToCart (productId) {
         let matchingItem;
@@ -88,6 +91,9 @@ class Cart {
 
 const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
+
+//cart.#localStorageKey = 'test'
+//mensagem de erro ao tentar redefinir a propriedade privada: cart-class.js:94 Uncaught SyntaxError: Private field '#localStorageKey' must be declared in an enclosing class (at cart-class.js:94:5)
 
 console.log(cart);
 console.log(businessCart);
