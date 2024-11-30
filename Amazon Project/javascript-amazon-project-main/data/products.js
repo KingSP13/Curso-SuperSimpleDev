@@ -36,8 +36,59 @@ class Product {
 
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
+  };
+
+  extraInfoHTML() {
+    return '';
   }
 };
+
+
+// Começamos aqui o conceito de herança, funciona basicamente como a definição, herdar o formato dos olhos ou cor de cabelo, em JS usamos herança para mandar a uma classe as propriedades e métodos de outra classe, principalmente quando uma classe é um tipo mais específico de uma classe já existente como neste caso são todos produtos, mas queremos especificar as roupas, temos aqui a classe Clothing herdando as propriedades e métodos de Product, os itens da categoria Clothing ainda são produtos, porém agora um pouco mais específicos com propriedades próprias, como por exemplo tamanho de roupa, voltagem para eletrodomésticos, etc.
+
+class Clothing extends Product{
+  sizeChartLink; 
+
+  constructor(productDetails) {
+    //Aqui precisamos adicionar as outras informações, por que já que Clothing vai receber as propriedades da classe pai, aínda temos que atribuir os valores, ao invés de fazer um por um como fizemos antes, "this.id = productDetails.id / this.image = productDetails.image / this.name = productDetails.name" e por aí vai, usamos o método especial, 'super', qye convoca a constructor da classe pai. no caso, chama a constructor de Products.
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+
+  //Aqui declaramos um método de mesmo nome que o herdado da classe Product, então ele sobreescreve o método e considera o código escrito aqui, por isso o if (type === 'clothing') {} funciona, caso NÃO seja clothing, ele retorn a a string vazia declarada onde NÃO é clothing, porém caso seja e o método é invocado, ele considera o código escrito aqui e gera o HTML que queremos.
+  extraInfoHTML() {
+    //super.extraInfoHTML(); O método especial de classe "super" pode ser usado para invocar métodos da classe pai também. Ao que parece a syntaxe é muito semelhante a do 'this', mas ao invés de chamar o objeto 'acima' (como em diretórios), ele chama a classe pai.
+    return `
+    <a href="${this.sizeChartLink}" target="_blank">
+      Size Chart
+    </a>
+    `;
+  }
+}
+
+//EXEMPLO: Com a classe Clothing VAZIA, o teste foi realizado e respondeu de acordo, mesmo sem nenhuma adição a classe, o produto foi criado, exibido no console e o método getPrice() funcionou de acordo.
+const tshirt = new Clothing(
+  {
+    id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
+    image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
+    name: "Adults Plain Cotton T-Shirt - 2 Pack",
+    rating: {
+      stars: 4.5,
+      count: 56
+    },
+    priceCents: 799,
+    keywords: [
+      "tshirts",
+      "apparel",
+      "mens"
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
+  });
+  console.log(tshirt)
+  console.log(tshirt.getPrice())
+  
 
 
 //Aqui entregamos o objeto completo para ser consumido pela constructor, passando como parámetro podemos converter os dados agrupados num objeto para uma classe
@@ -717,5 +768,8 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if(productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 });

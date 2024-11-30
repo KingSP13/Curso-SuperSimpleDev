@@ -43,6 +43,8 @@ products.forEach((product) => {
         </select>
       </div>
 
+      ${product.extraInfoHTML()}
+
       <div class="product-spacer"></div>
 
       <div class="added-to-cart js-added-to-cart-${product.id}">
@@ -56,6 +58,8 @@ products.forEach((product) => {
       </button>
     </div>
   `;
+
+  // A linha '${product.extraInfoHTML()}' é um exemplo de polimorfismo, onde usamos um método sem discriminar qual a classe a qual pertence, como por exemplo temos a classe Product e temos a classe Clothing, mesmo sem saber qual vai ser chamada, jogamos o método 'product.extraInfoHTML e a prípria linguagem seleciona qual classe vai ser invocada, e se futuramente outra classe com o mesmo método for adicionada, o código não precisa ser alterado.
 });
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
