@@ -122,7 +122,7 @@ console.log(date.toLocaleTimeString());
 
 //Aprofundando na referência dinâmica 'this', o 'this' é uma palavra chave que referencia o objeto atual e pode ser usado em qualquer lugar do código, como no exemplo abaixo ele está sendo usado isoladamente fora de um objeto, neste caso não existe um objeto pai então a info de saída é 'undefined'
 
-console.log(this)
+// console.log(this)
 
 //Outro exemplo de como o 'this' funciona abaixo, inicializando o objeto object2 demos a ele a propriedade a: 2 e b: this.a, que pode parece que a propriedade 'b' vai receber 2 pelo this apontar ao próprio objeto e o valor de a ser 2, porém o objeto ainda não foi inicializado por completo, então b vai receber 'undefined'. As aplicações que temos é normalmente em métodos, onde aponta ao objeto pai.
 /* TEST CODE
@@ -132,7 +132,8 @@ const object2 = {
 };
 */
 
-//O 'this' também pode ser utilizado dentro de uma função, no caso ela retorna 'undefined' por não estar dentro de um objeto, mas as funções em JavaScript possuem um método chamado '.call' que executa a função, como normalmente acontece, porém ele recebe os parâmetros a serem passados para a função, sendo um adicional, o primeiro deles é o valor que 'this' vai adotar, no exemplo abaixo, o 'this' foi substituído por 'hello'.
+//O 'this' também pode ser utilizado dentro de uma função, no caso ela retorna 'undefined' por não estar dentro de um objeto, mas as funções em JavaScript possuem um método chamado '.call' que executa a função, como normalmente acontece, porém ele recebe os parâmetros a serem passados para a função, sendo um adicional, o primeiro deles é o valor que 'this' vai adotar, no exemplo abaixo, o 'this' foi substituído por 'hello'. IMPORTANTE: APENAS FUNÇÕES COMUNS REALIZAM ESSA SUBSTITUIÇÃO, ARROW FUNCTIONS NÃO !
+/* TEST CODE
 function logThis(param1, param2) {
   console.log(this)
   console.log(param1)
@@ -140,6 +141,9 @@ function logThis(param1, param2) {
 }
 logThis();
 logThis.call('hello', 'param1', 'param2');
+*/
+
+//Anteriormente existia um problema comum em JavaScript em que quando se criasse um objeto, e nele se tinha uma função com um forEach loop, no caso um método, o 'this' apontava para o objeto em questão, mas se tentássemos fazer um forEach loop, dentro do forEach loop, ele não apontaria mais o objeto em questão, apontaria 'undefined', por conta da função, por isso dentro de uma função comum, 'this' vira 'undefined', e isso causa problemas por não ter mais acesso ao objeto acima, por isso se criou as arrow functions, elas não alteram o valor do 'this', dentro e fora do forEach o valor é o mesmo, para que não ocorra a sobreposição.
 
 export const products = [
   {
