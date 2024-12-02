@@ -105,21 +105,23 @@ class raceCar extends Car {
     };
 
     openTrunk() {
-
         console.log("Race cars don't have a trunk")
     };
+
     closeTrunk () {
         console.log("Race cars don't have a trunk")
     };
+
     constructor(carInfo) {
         super(carInfo)
         this.brand = carInfo.brand
         this.model = carInfo.model
     };
 };
-const raceCar1 = new raceCar (carInfo[2])
-console.log(raceCar1)
-raceCar1.go()
-raceCar1.openTrunk()
-raceCar1.closeTrunk()
-raceCar1.brake()
+const raceCar1 = new raceCar (carInfo[2]);
+
+console.log(raceCar1);
+raceCar1.go();
+raceCar1.openTrunk();
+raceCar1.closeTrunk();
+raceCar1.brake();
