@@ -145,6 +145,27 @@ logThis.call('hello', 'param1', 'param2');
 
 //Anteriormente existia um problema comum em JavaScript em que quando se criasse um objeto, e nele se tinha uma função com um forEach loop, no caso um método, o 'this' apontava para o objeto em questão, mas se tentássemos fazer um forEach loop, dentro do forEach loop, ele não apontaria mais o objeto em questão, apontaria 'undefined', por conta da função, por isso dentro de uma função comum, 'this' vira 'undefined', e isso causa problemas por não ter mais acesso ao objeto acima, por isso se criou as arrow functions, elas não alteram o valor do 'this', dentro e fora do forEach o valor é o mesmo, para que não ocorra a sobreposição.
 
+class Appliance extends Product {
+  instructionsLink = "images/appliance-instructions.png"
+  warrantyLink = "images/appliance-warranty.png"
+
+  constructor(productDetails) {
+    super(productDetails);
+  };
+
+  extraInfoHTML() {
+    //super.extraInfoHTML(); O método especial de classe "super" pode ser usado para invocar métodos da classe pai também. Ao que parece a syntaxe é muito semelhante a do 'this', mas ao invés de chamar o objeto 'acima' (como em diretórios), ele chama a classe pai.
+    return `
+    <a href="${this.instructionsLink}" target="_blank">
+      Instructions
+    </a>
+    <a href="${this.warrantyLink}" target="_blank">
+    Warranty
+    </a>
+    `;
+  }
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -205,7 +226,10 @@ export const products = [
       "toaster",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance',
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png"
   },
   {
     id: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
@@ -249,7 +273,9 @@ export const products = [
       "hoodies",
       "sweaters",
       "apparel"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   },
   {
     id: "77919bbe-0e56-475b-adde-4f24dfed3a04",
@@ -375,7 +401,9 @@ export const products = [
       "shorts",
       "apparel",
       "mens"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   },
   {
     id: "c2a82c5e-aff4-435f-9975-517cfaba2ece",
@@ -390,7 +418,10 @@ export const products = [
       "water boiler",
       "appliances",
       "kitchen"
-    ]
+    ],
+    type: 'appliance',
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png"
   },
   {
     id: "6b07d4e7-f540-454e-8a1e-363f25dbae7d",
@@ -423,7 +454,9 @@ export const products = [
       "straw hats",
       "summer",
       "apparel"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   },
   {
     id: "e4f64a65-1377-42bc-89a5-e572d19252e2",
@@ -557,7 +590,9 @@ export const products = [
       "tuques",
       "apparel",
       "womens"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   },
   {
     id: "ee1f7c56-f977-40a4-9642-12ba5072e2b0",
@@ -572,7 +607,9 @@ export const products = [
       "pants",
       "apparel",
       "mens"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   },
   {
     id: "1c079479-8586-494f-ab53-219325432536",
@@ -651,7 +688,9 @@ export const products = [
       "jogging",
       "apparel",
       "womens"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   },
   {
     id: "d339adf3-e004-4c20-a120-40e8874c66cb",
@@ -695,7 +734,10 @@ export const products = [
       "coffeemakers",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance',
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png"
   },
   {
     id: "02e3a47e-dd68-467e-9f71-8bf6f723fdae",
@@ -755,7 +797,10 @@ export const products = [
       "food blenders",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance',
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png"
   },
   {
     id: "36c64692-677f-4f58-b5ec-0dc2cf109e27",
@@ -802,11 +847,15 @@ export const products = [
       "hoodies",
       "apparel",
       "mens"
-    ]
+    ],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png"
   }
 ].map((productDetails) => {
   if(productDetails.type === 'clothing') {
     return new Clothing(productDetails);
+  } else if (productDetails.type === 'appliance') {
+    return new Appliance(productDetails)
   }
   return new Product(productDetails);
 });
