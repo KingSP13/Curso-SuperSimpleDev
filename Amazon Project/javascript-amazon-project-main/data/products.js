@@ -168,6 +168,42 @@ class Appliance extends Product {
 
 export let products = [];
 
+export function loadProductsFetch() {
+  //Por padrão fetch vai fazer uma requisição HTTP 'GET', então passamos o URL para que queremos envia-la. Fetch funciona como o método HTTP 'GET', porém por baixo dos panos, cria uma Promise, então recebe os dados e salva no parâmetro do '.then()', que como vimos antes, vai funcionar basicamente como uma variável comum
+  const promise =  fetch(
+    'https://supersimplebackend.dev/products'
+
+  ).then((response) => {
+    //Aqui, o 'response.json' cria outra Promise, então podemos criar um próximo passo, como da pra ver no console.log abaixo, o response é literalmente a resposta do 'GET', apenas os dados com número de status, URL a qual foi referido, etc...
+    //console.log(response)
+    return response.json() //Aqui, realmente processamos os dados, isso vai converter a resposta de servidor de 'response', para um json que podemos trabalhar, no caso, a lista de produtos. Lembrando que isso também é uma Promise, então código assíncrono, precisamos aguardar concluir para seguir para o próximo passo. Por isso o return, ele obriga a espera pelo dado para a função ser concluída
+  }).then((productsData) => {
+    //O valor é passado pra variável do '.then' como vimos antes, e aqui o console.log vai exibir o array de objetos que precisamos para importar e funcionar no projeto.
+    console.log(productsData);
+    //A resposta aqui foi um array de objetos json por conta do método de cima, o return, ele converteu uma string enorme com os dados de um json, num array javascript que podemos usar, ele basicamente usou o código que tínhamos antes na parte do 'products = JSON.parse(xhr.response)'
+
+    products = productsData.map((productDetails) => {
+      if(productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+      } else if (productDetails.type === 'appliance') {
+        //TODO - criei a classe de Appliance por conta de um exercício, mas me baseei nas propriedades 'keywords', aí criei uma propriedade 'type: appliance', e isso puxava os produtos pra classe e criava bonitinho, mas agora importando pelo backend não posso alterar mais, preciso de outro método de fazer isso funcionar, também tem a paradinha clicável de Informações e Garantia, semelhante a tabela de medidas de roupas que fica perto da imagem do produto na home page. Depois volta na lissão 17 de heranças e confere dnv.
+        return new Appliance(productDetails)
+      }
+      return new Product(productDetails);
+    });
+
+    console.log('load products');
+
+  });
+  return promise;
+}
+
+/*
+loadProductsFetch().then(() => {
+  console.log('next step')
+});
+*/
+
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
 
