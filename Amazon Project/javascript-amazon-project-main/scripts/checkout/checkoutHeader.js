@@ -29,4 +29,4 @@ export function renderCheckoutHeader() {
     .innerHTML = checkoutHeaderHTML;
 }
 // TODO remove esse comentário pq o jasmine ta fazendo graça e o teste não funciona se a função de renderizar o header estiver aí
-// renderCheckoutHeader()
+renderCheckoutHeader()
