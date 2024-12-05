@@ -194,10 +194,13 @@ export function loadProductsFetch() {
 
     console.log('load products');
 
-  });
+//Promises nos dão dois métodos, '.then' e '.catch', caso um erro ocorra, ela vai executar o '.catch' e executar a função contida nele, sempre que a Promise for negada.
+  }).catch((error) => {
+    console.log('Unexpected error. Please try again later.')
+  })
   return promise;
 }
-
+// loadProductsFetch();
 /*
 loadProductsFetch().then(() => {
   console.log('next step')
@@ -220,9 +223,18 @@ export function loadProducts(fun) {
     fun()
   });
 
+
+//ERROR HANDLING - Aqui temos um código específico para caso a resposta do 'GET' seja alguma mensagem de erro, independente de qual seja, temos o exemplo do link incorreto, mas outros também podem ocorrer, preparamos um callback apenas para erros.
+
+  xhr.addEventListener('error', (error) => {
+    console.log('Unexpected error. Please try again later.')
+  });
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 };
+
+// loadProducts()
 
 /*
 export const products = [
