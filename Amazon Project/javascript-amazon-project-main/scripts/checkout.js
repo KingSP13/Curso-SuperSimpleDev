@@ -16,9 +16,11 @@ function loadPage() {
 //Basicamente envolve o código da função e o retorna numa Promise
 async function loadPage() {
 
-//O await aguarda a função ser finalizada, para seguir para o próximo passo, e só pode ser usado dentro de uma função async
+//O await aguarda a função ser finalizada, para seguir para o próximo passo, e só pode ser usado dentro de uma função async, mesmo que aninhada com função comum, não funciona, a função pai, direta, tem que ser await
     await loadProductsFetch();
 
+
+//Como vimos antes, o valor passado como parâmetro para o 'resolve', é repassado para o '.then' como parâmetro no passo seguinte, porém não precisamos do '.then' aqui, neste caso ele é retornado para a função, e precisamos armazenar este valor numa variável como: const fun = await new Promise (() => {resolve(value)}), fun vai receber value
     await new Promise((resolve) => {
         loadCart(() => {
             resolve();
