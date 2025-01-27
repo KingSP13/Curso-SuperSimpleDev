@@ -25,6 +25,7 @@ function saveToStorage() {
 
 export function addToCart(productId) {
   let matchingItem;
+  let quantitySelector = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
 
   cart.forEach((cartItem) => {
     if (productId === cartItem.productId) {
@@ -32,14 +33,14 @@ export function addToCart(productId) {
     }
   });
 
-  if (matchingItem) {
-    matchingItem.quantity += 1;
+  if(matchingItem) {
+      matchingItem.quantity += quantitySelector
   } else {
-    cart.push({
-      productId: productId,
-      quantity: 1,
-      deliveryOptionId: '1'
-    });
+      cart.push({
+          productId,
+          quantity: quantitySelector
+      });
+      
   }
 
   saveToStorage();
